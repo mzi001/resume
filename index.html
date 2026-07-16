@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李木子 · AI产品经理</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#191919;--accent:#2EAADC;--accent-light:#52BDFF;--text:#37352F;--text-light:#6B6A66;--text-lighter:#9B9B97;--bg:#FFF;--bg-alt:#FBFBFA;--bg-warm:#FFFCF7;--border:#E9E9E7;--border-light:#F1F1EF;--radius:8px;--radius-lg:16px;--shadow:0 1px 3px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--max-w:1100px;--transition:.2s ease;--r1:#FF7369;--r2:#FFA344;--r3:#FFD43B;--r4:#4DAB9A;--r5:#529CCA;--r6:#9A6DD7}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-light);padding:0 32px}
+nav .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:50px}
+nav .logo{font-size:.95rem;font-weight:700;color:var(--primary);text-decoration:none}
+nav .nav-links{display:flex;gap:24px;list-style:none}
+nav .nav-links a{color:var(--text-light);text-decoration:none;font-size:.85rem;transition:color var(--transition)}
+nav .nav-links a:hover{color:var(--primary)}
+.hero{padding:120px 0 60px}
+.hero-inner{display:grid;grid-template-columns:180px 1fr;gap:48px;align-items:start;padding-left:40px}
+.hero-photo{width:180px;height:220px;border-radius:var(--radius);object-fit:cover;border:1px solid var(--border-light);background:var(--bg-alt)}
+.hero-info h1{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;letter-spacing:-.04em;margin-bottom:8px}
+.hero-info h1 .highlight{color:var(--primary)}
+.hero-info .subtitle{font-size:1.1rem;color:var(--text-light);margin-bottom:20px}
+.hero-contact{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:.9rem;color:var(--text-light)}
+.hero-contact a{color:var(--text-light);text-decoration:none;border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.hero-contact a:hover{color:var(--accent);border-color:var(--accent)}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;text-align:center;gap:24px}.hero-photo{margin:0 auto;width:160px;height:200px}}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 80px}
+.stat-cell{background:var(--bg);padding:36px 20px;text-align:center}
+.stat-cell .num{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--primary)}
+.stat-cell .label{font-size:.85rem;color:#555;margin-top:4px;font-weight:600}
+section{padding:80px 0}section+section .container{border-top:1px solid var(--border-light);padding-top:80px}
+.section-header{text-align:center;margin-bottom:64px}
+.section-header h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--primary);letter-spacing:-.02em;margin-bottom:8px}
+.section-header p{font-size:.95rem;color:var(--text-light);max-width:480px;margin:0 auto}
+.about-text{font-size:1.05rem;color:var(--text);line-height:1.9;max-width:720px;margin:0 auto;text-align:center}
+.about-text strong{color:var(--primary);font-weight:600}
+.feature-block{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:80px 0}
+.feature-block+.feature-block{border-top:1px solid var(--border-light)}
+.feature-block.reverse{direction:rtl}
+.feature-block.reverse>*{direction:ltr}
+.feature-visual{background:var(--bg-alt);border-radius:var(--radius-lg);height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);position:relative;overflow:hidden;gap:8px}.feature-visual video{border-radius:var(--radius-lg)}
+.feature-visual .emoji{font-size:3rem;opacity:.8}
+.feature-visual .kpi-row{display:flex;gap:24px;margin-top:12px}
+.feature-visual .kpi{text-align:center}
+.feature-visual .kpi .kpi-num{font-size:1.3rem;font-weight:800;color:var(--accent)}
+.feature-visual .kpi .kpi-label{font-size:.72rem;color:var(--text-lighter);margin-top:2px}
+.feature-text .tag{display:inline-block;padding:4px 12px;border-radius:4px;background:var(--bg-alt);color:var(--accent);font-size:.8rem;font-weight:600;margin-bottom:16px;border:1px solid transparent}
+.tag-huya{background:#FFF8E8;color:#D48806;border:1px solid #FFE4B5}
+.tag-tencent{background:#E8F4FD;color:#0052D9;border:1px solid #B8D4F0}
+.tag-xiaohu{background:#F0F5E8;color:#5A8C2A;border:1px solid #D4E8C0}
+.group-huya .kpi-num{color:#D48806!important}
+.group-tencent .kpi-num{color:#0052D9!important}
+.group-xiaohu .kpi-num{color:#5A8C2A!important}
+
+
+.feature-text h3{font-size:1.15rem;font-weight:700;color:var(--primary);margin-bottom:8px}
+.feature-text .desc{font-size:.95rem;color:var(--text-light);margin-bottom:20px;line-height:1.75}
+.feature-text .point-list{list-style:none}
+.feature-text .point-list li{padding:5px 0 5px 20px;font-size:.92rem;color:var(--text);line-height:1.75;position:relative}
+.feature-text .point-list li .bullet{width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;left:0;top:12px}
+.feature-text .point-list li .hl{color:var(--accent);font-weight:700;word-break:break-word}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px;margin:0 auto}
+.edu-card{padding:28px;border-radius:var(--radius-lg);border:1px solid var(--border-light);background:linear-gradient(135deg,var(--bg-alt) 0%,var(--bg) 100%);transition:all var(--transition);text-align:center;position:relative;overflow:hidden}
+.edu-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-light));opacity:0;transition:opacity var(--transition)}.edu-card:hover::before{opacity:1}
+.edu-card .school{font-weight:800;color:var(--primary);font-size:1.1rem;letter-spacing:-.01em}
+.edu-card .major{font-size:.9rem;color:var(--text);margin-top:4px}
+.edu-card .meta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:.82rem;color:var(--text-lighter)}
+.edu-card .meta .level{padding:2px 10px;border-radius:4px;background:var(--bg);border:1px solid var(--border);font-size:.75rem}.edu-icon{font-size:2.5rem;margin-bottom:16px;opacity:.8}.edu-card{background:linear-gradient(135deg,var(--bg-alt) 0%,var(--bg) 100%)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto}
+.skill-card{padding:28px;border-radius:var(--radius-lg);border:1px solid var(--border-light);transition:all var(--transition)}
+.skill-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.skill-card h3{font-size:.95rem;font-weight:600;color:var(--primary);margin-bottom:10px}
+.skill-card p{font-size:.88rem;color:var(--text-light);line-height:1.75}
+.video-section{background:var(--bg-alt);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.video-placeholder{aspect-ratio:16/9;border-radius:var(--radius-lg);border:2px dashed var(--border);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:all var(--transition)}
+.video-placeholder:hover{border-color:var(--accent);background:var(--bg-alt)}
+.video-placeholder .icon{font-size:2.2rem;opacity:.25}
+.video-placeholder .text{font-size:.88rem;color:var(--text-lighter)}
+.hobby-text{font-size:1rem;color:var(--text);line-height:1.85;max-width:720px;margin:0 auto}
+.hobby-text strong{color:var(--primary);font-weight:600}
+footer{border-top:1px solid var(--border-light);border-bottom:none;padding:48px 0 32px;text-align:center}
+footer p{font-size:.85rem;color:var(--text-lighter)}
+footer .contact-row{display:flex;justify-content:center;gap:24px;margin-top:12px;font-size:.88rem}
+footer .contact-row a{color:var(--text-light);text-decoration:none;transition:color var(--transition)}
+footer .contact-row a:hover{color:var(--accent)}
+
+@media print {
+  .page-break{page-break-before:always}
+  nav,.video-section{display:none}
+}
+
+
+
+/* 滚动入场动效 */
+.animate-on-scroll{opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .6s ease}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+.animate-from-left{opacity:0;transform:translateX(-60px);transition:opacity .6s ease,transform .6s ease}
+.animate-from-left.visible{opacity:1;transform:translateX(0)}
+.animate-from-right{opacity:0;transform:translateX(60px);transition:opacity .6s ease,transform .6s ease}
+.animate-from-right.visible{opacity:1;transform:translateX(0)}
+.animate-delay-1{transition-delay:.1s}
+.animate-delay-2{transition-delay:.2s}
+.animate-delay-3{transition-delay:.3s}
+.animate-delay-4{transition-delay:.4s}
+.page-break{margin-top:0}
+.company-group .feature-block{padding:40px 0;gap:40px}
+.company-group .feature-block+.feature-block{border-top:none}.company-group+.page-break+.company-group{border-top:1px solid var(--border-light);padding-top:40px}
+.company-group .feature-visual{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.company-logo{text-align:center;padding:40px 0 0}
+.company-logo img{height:48px;object-fit:contain;opacity:.85}
+.company-date{text-align:center;font-size:.9rem;color:var(--text-light);padding:8px 0 0;font-weight:500}
+
+
+
+@media(max-width:768px){.container{padding:0 20px}nav{padding:0 20px}.hero{padding:100px 0 48px}.stats-strip{grid-template-columns:repeat(2,1fr)}.feature-block{grid-template-columns:1fr;gap:32px}.feature-block.reverse{direction:ltr}.feature-visual{height:200px}.edu-grid,.skills-grid,.video-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner"><a href="#" class="logo">李木子</a><ul class="nav-links"><li><a href="#about">关于</a></li><li><a href="#experience">经历</a></li><li><a href="#education">教育</a></li><li><a href="#skills">技能</a></li><li><a href="#gaming">游戏经历</a></li></ul></div></nav>
+
+<section class="hero"><div class="container">
+<div class="hero-inner">
+<img src="images/photo.jpg" alt="李木子" class="hero-photo">
+<div class="hero-info">
+<h1><span class="highlight">李木子</span></h1>
+<p class="subtitle">AI产品经理 · 6年互联网产品经验 · 游戏/直播场景AI落地</p>
+<div class="hero-contact"><span>17683721210</span><a href="mailto:3978944@qq.com">3978944@qq.com</a><span>26岁 · 男</span></div>
+</div>
+</div>
+</div></section>
+
+<div class="container"><div class="stats-strip">
+<div class="stat-cell animate-on-scroll animate-delay-1"><div class="num">6年</div><div class="label">工作经验</div></div>
+<div class="stat-cell animate-on-scroll animate-delay-2"><div class="num">5年</div><div class="label">游戏/直播AI</div></div>
+<div class="stat-cell animate-on-scroll animate-delay-3"><div class="num">10+</div><div class="label">头部赛事覆盖</div></div>
+<div class="stat-cell animate-on-scroll animate-delay-4"><div class="num">20W+</div><div class="label">AI直播间DAU</div></div>
+</div></div>
+
+<section id="about"><div class="container">
+<div class="section-header animate-on-scroll"><h2>个人简介</h2></div>
+<div class="about-text animate-on-scroll">
+<p><strong>6年互联网从业经验，其中5年深耕游戏/直播场景AI落地方向</strong>，先后经历AI产品运营、AI产品经理岗位，具备AI需求挖掘、跨部门对接、方案设计到落地迭代、效果验收的全流程能力。</p>
+<p style="margin-top:16px">落地项目覆盖直播互动、电商数字人、赛事AI解说、企业展厅AI互动等场景，可快速将业务诉求转化为可落地的AI产品方案。</p>
+<p style="margin-top:16px">熟练使用Claude Code/CodeX/OpenClaw等AI工具提效，深度理解游戏/直播用户偏好，擅长设计贴合场景的AI互动体验，<strong>直播场景轻互动玩法最快2小时即可完成上线</strong>。</p>
+</div></div></section>
+
+<section id="experience"><div class="container">
+<div class="section-header animate-on-scroll"><h2>工作经历</h2><p>虎牙 · 腾讯 · 小虎互联</p></div>
+
+<div class="company-group group-huya">
+<div class="company-logo animate-on-scroll"><img src="images/huya_logo.png" alt="虎牙"></div><div class="company-date animate-on-scroll">2025.05 - 至今</div>
+<div class="feature-block animate-from-left">
+<div class="feature-visual" style="padding:0;overflow:hidden;background:#000"><video src="videos/npc弹幕.mp4" controls muted style="width:100%;height:100%;object-fit:cover"></video></div>
+<div class="feature-text">
+
+<h3>NPC弹幕互动产品</h3>
+<div class="desc">从0到1搭建全品类直播NPC弹幕互动体系，覆盖生态互动、捧大哥、营收引导三大场景</div>
+<ul class="point-list">
+<li><span class="bullet"></span>设计多维度NPC人设体系（黑子/水军/粉团等），支持打赏触发、游戏事件跟随、弹幕互动</li>
+<li><span class="bullet"></span>覆盖<span class="hl">10+头部赛事/主播直播间</span>，单场最高互动量破10W</li>
+<li><span class="bullet"></span>编写完整SOP流程文档，方便内部运营团队协作提效</li>
+</ul></div></div>
+
+<div class="feature-block reverse animate-from-right">
+<div class="feature-visual" style="padding:8px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--bg-alt)"><video src="videos/ai直播间.mp4" controls muted style="width:100%;height:100%;object-fit:cover;border-radius:8px"></video><video src="videos/电商数字人.mp4" controls muted style="width:100%;height:100%;object-fit:cover;border-radius:8px"></video></div>
+<div class="feature-text">
+
+<h3>AI直播间 & 数字人产品体系</h3>
+<div class="desc">主导电商数字人流程自动化改造，新增后台管理、AI生成商品介绍、一键开播等功能</div>
+<ul class="point-list">
+<li><span class="bullet"></span>落地传奇杯、不朽杯、老王杯等数字人电商直播间，累计销售额过百万</li>
+<li><span class="bullet"></span>设计纯AI数字人IP直播间方案（海外拉流/纯AI互动/AI陪看），累计DAU超<span class="hl">20W</span></li>
+</ul></div></div>
+
+<div class="feature-block animate-from-left">
+<div class="feature-visual" style="padding:0;overflow:hidden;background:#000"><video src="videos/cs2工具.mp4" controls muted style="width:100%;height:100%;object-fit:cover"></video></div>
+<div class="feature-text">
+
+<h3>游戏工具</h3>
+<div class="desc">对国内外市场上的工具进行调研，并与运营深度沟通，打造出用户想要的工具</div>
+<ul class="point-list">
+<li><span class="bullet"></span>目前已上线CS2的报点图、职业准心方案等工具</li>
+<li><span class="bullet"></span>产品独立vibe coding上线<span class="hl">失控进化新手开荒攻略</span></li>
+</ul></div></div>
+</div><!-- /company-group 虎牙 -->
+
+<div class="page-break"></div>
+<div class="company-group group-tencent">
+<div class="company-logo animate-on-scroll"><img src="images/tencent_logo.png" alt="腾讯"></div><div class="company-date animate-on-scroll">2021.09 - 2025.03</div>
+<div class="feature-block reverse animate-from-right">
+<div class="feature-visual" style="padding:0;overflow:hidden;background:#000"><video src="videos/王者解说.mp4" controls muted style="width:100%;height:100%;object-fit:cover"></video></div>
+<div class="feature-text">
+
+<h3>王者荣耀AI解说</h3>
+<div class="desc">全程参与项目从0到1立项上线，独立完成80%内容策划，设计差异化解说方案平衡赛事专业性与娱乐性</div>
+<ul class="point-list">
+<li><span class="bullet"></span>主导KPL选手单OB视角解说内容策划，适配世冠等不同赛事的本地化需求</li>
+<li><span class="bullet"></span>负责微信视频号第一人称视角解说，设计礼物感谢、进场欢迎等场景的策略，辅助主播进行直播</li>
+<li><span class="bullet"></span>为大模型效果制定评测标准，解说内容匹配度提升至<span class="hl">90%+</span></li>
+</ul></div></div>
+
+<div class="feature-block animate-from-left">
+<div class="feature-visual" style="padding:0;overflow:hidden;background:#000"><video src="videos/和平解说.mp4" controls muted style="width:100%;height:100%;object-fit:cover"></video></div>
+<div class="feature-text">
+
+<h3>和平精英AI解说</h3>
+<div class="desc">全流程负责项目从立项到上线，创新设计多种互动玩法，内部验收超出预期</div>
+<ul class="point-list">
+<li><span class="bullet"></span>创新设计热梗植入、拟人化打断、礼物感谢播报、诗词段子类解说等互动功能</li>
+<li><span class="bullet"></span>与算法团队联动优化高光解说延迟，实现选手高光播报延迟低于<span class="hl">0.1s</span>，达到赛事级直播要求</li>
+</ul></div></div>
+</div><!-- /company-group 腾讯 -->
+
+<div class="page-break"></div>
+<div class="company-group group-xiaohu">
+<div class="company-logo animate-on-scroll" style="font-size:1.5rem;font-weight:700;color:#5A8C2A;opacity:.7">小虎互联</div><div class="company-date animate-on-scroll">2020.10 - 2021.08</div>
+<div class="feature-block animate-from-left">
+<div class="feature-visual" style="padding:0;overflow:hidden;background:linear-gradient(135deg,#F0F5E8 0%,#E8F0D8 100%)"><div class="emoji">📊</div><div class="kpi-row"><div class="kpi"><div class="kpi-num">18-22%</div><div class="kpi-label">盘口盈利率</div></div><div class="kpi"><div class="kpi-num">3周→1周</div><div class="kpi-label">培训周期</div></div><div class="kpi"><div class="kpi-num">50%</div><div class="kpi-label">效率提升</div></div></div></div>
+<div class="feature-text">
+
+<h3>风控运营</h3>
+<div class="desc">负责手游赛事开盘与结算，建立预测模型，编写部门标准流程文档</div>
+<ul class="point-list">
+<li><span class="bullet"></span>建立王者荣耀赛事开盘预测模型，盘口盈利率稳定在<span class="hl">18%-22%</span></li>
+<li><span class="bullet"></span>编写《赛事风控操作手册》被采纳为部门标准流程，新人培训周期从<span class="hl">3周压缩至1周</span></li>
+<li><span class="bullet"></span>负责社区内容审核，违规内容处理响应时效提升<span class="hl">50%</span></li>
+</ul></div></div>
+
+</div></section>
+
+<section id="education"><div class="container">
+<div class="section-header animate-on-scroll"><h2>教育经历</h2></div>
+<div class="edu-grid">
+<div class="edu-card animate-on-scroll">
+<div class="edu-icon">🎓</div>
+<div class="school">华南师范大学</div>
+<div class="major">心理学</div>
+<div class="meta"><span class="level">本科</span><span>2026 - 2029</span></div>
+</div>
+<div class="edu-card animate-on-scroll animate-delay-1">
+<div class="edu-icon">🎓</div>
+<div class="school">武汉信息传播职业技术学院</div>
+<div class="major">婚庆服务与管理</div>
+<div class="meta"><span class="level">大专</span><span>2017 - 2020</span></div>
+</div>
+</div></div></section>
+
+<section id="skills"><div class="container">
+<div class="section-header animate-on-scroll"><h2>专业能力</h2></div>
+<div class="skills-grid">
+<div class="skill-card animate-on-scroll"><h3>🛠 产品能力</h3><p>可独立完成AI产品全流程落地，从需求调研、方案设计、跨团队协调到效果评测迭代</p></div>
+<div class="skill-card animate-on-scroll animate-delay-1"><h3>🤖 AI专项</h3><p>熟悉大模型训练标注、prompt调试、效果评测逻辑，能独立对接算法团队拆解AI需求</p></div>
+<div class="skill-card animate-on-scroll animate-delay-2"><h3>⚡ 效率工具</h3><p>熟练使用Claude Code / CodeX / OpenClaw等AI工具提效</p></div>
+<div class="skill-card animate-on-scroll animate-delay-3"><h3>🎮 游戏理解</h3><p>深度理解游戏/直播用户偏好，擅长设计贴合场景的AI互动体验</p></div>
+</div></div></section>
+
+
+
+<section id="gaming"><div class="container">
+<div class="section-header animate-on-scroll"><h2>游戏经历</h2></div>
+<div class="hobby-text animate-on-scroll">
+<p><strong>核心游戏深度用户，全品类覆盖：</strong>王者荣耀（全国百强不知火舞/女娲，巅峰赛最高2100分，荣耀王者84星）、三角洲行动、燕云十六声、原神，熟悉MOBA/射击/开放世界/二次元等各品类游戏的核心玩法、用户内容消费偏好，对游戏直播互动场景有强体感。</p>
+<p style="margin-top:16px"><strong>擅长游戏PVE战术研究、BOSS打法设计</strong>，可快速挖掘不同品类游戏可落地AI互动的场景切入点。</p>
+</div></div></section>
+
+<footer><div class="container">
+<p>李木子 · AI产品经理</p>
+<div class="contact-row"><a href="tel:17683721210">17683721210</a><a href="mailto:3978944@qq.com">3978944@qq.com</a></div>
+</div></footer>
+
+<script>
+// 滚动入场动效
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate-on-scroll, .animate-from-left, .animate-from-right').forEach(el => {
+  observer.observe(el);
+});
+
+
+</script>
+</body></html>
