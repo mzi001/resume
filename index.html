@@ -81,6 +81,20 @@ section{padding:80px 0}section+section .container{border-top:1px solid var(--bor
 .video-placeholder .text{font-size:.88rem;color:var(--text-lighter)}
 .hobby-text{font-size:1rem;color:var(--text);line-height:1.85;max-width:720px;margin:0 auto}
 .hobby-text strong{color:var(--primary);font-weight:600}
+
+.game-gallery{display:flex;gap:20px;overflow-x:auto;padding:20px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.game-gallery::-webkit-scrollbar{height:6px}
+.game-gallery::-webkit-scrollbar-track{background:transparent}
+.game-gallery::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.game-card{flex:0 0 280px;scroll-snap-align:start;cursor:pointer;transition:transform var(--transition)}
+.game-card:hover{transform:translateY(-4px)}
+.game-card img{width:100%;height:200px;object-fit:cover;border-radius:var(--radius-lg);border:1px solid var(--border-light)}
+.game-card .game-name{text-align:center;margin-top:12px;font-weight:600;color:var(--primary);font-size:.95rem}
+
+.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90%;max-height:90%;object-fit:contain;border-radius:var(--radius)}
+
 footer{border-top:1px solid var(--border-light);border-bottom:none;padding:48px 0 32px;text-align:center}
 footer p{font-size:.85rem;color:var(--text-lighter)}
 footer .contact-row{display:flex;justify-content:center;gap:24px;margin-top:12px;font-size:.88rem}
@@ -264,7 +278,16 @@ footer .contact-row a:hover{color:var(--accent)}
 <div class="hobby-text animate-on-scroll">
 <p><strong>核心游戏深度用户，全品类覆盖：</strong>王者荣耀（全国百强不知火舞/女娲，巅峰赛最高2100分，荣耀王者84星）、三角洲行动、燕云十六声、原神，熟悉MOBA/射击/开放世界/二次元等各品类游戏的核心玩法、用户内容消费偏好，对游戏直播互动场景有强体感。</p>
 <p style="margin-top:16px"><strong>擅长游戏PVE战术研究、BOSS打法设计</strong>，可快速挖掘不同品类游戏可落地AI互动的场景切入点。</p>
+</div>
+<div class="game-gallery">
+<div class="game-card" onclick="openLightbox(this)"><img src="images/gaming/王者荣耀.jpg" alt="王者荣耀"><div class="game-name">王者荣耀</div></div>
+<div class="game-card" onclick="openLightbox(this)"><img src="images/gaming/三角洲行动.png" alt="三角洲行动"><div class="game-name">三角洲行动</div></div>
+<div class="game-card" onclick="openLightbox(this)"><img src="images/gaming/燕云十六声.jpg" alt="燕云十六声"><div class="game-name">燕云十六声</div></div>
+<div class="game-card" onclick="openLightbox(this)"><img src="images/gaming/原神.jpg" alt="原神"><div class="game-name">原神</div></div>
+<div class="game-card" onclick="openLightbox(this)"><img src="images/gaming/异环.jpg" alt="异环"><div class="game-name">异环</div></div>
 </div></div></section>
+
+<div class="lightbox" onclick="closeLightbox()"><img src="" alt="放大图片"></div>
 
 <footer><div class="container">
 <p>李木子 · AI产品经理</p>
@@ -285,6 +308,22 @@ document.querySelectorAll('.animate-on-scroll, .animate-from-left, .animate-from
   observer.observe(el);
 });
 
-
+// Lightbox
+function openLightbox(card) {
+  const img = card.querySelector('img');
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.querySelector('.lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body></html>
